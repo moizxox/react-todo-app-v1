@@ -29,6 +29,16 @@ function App() {
   const handleDelete = (deleteID) => {
     setTaskData(taskData.filter((dataItem) => dataItem.taskID !== deleteID));
   };
+  const handleComplete = (completeID) => {
+    taskData.forEach((dataItem) => {
+      if (dataItem.taskID === completeID) {
+        dataItem.taskStatus === true
+          ? (dataItem.taskStatus = false)
+          : (dataItem.taskStatus = true);
+      }
+      setTaskData([...taskData]);
+    });
+  };
 
   useEffect(() => {
     localStorage.setItem("taskData", JSON.stringify(taskData));
@@ -41,6 +51,7 @@ function App() {
         taskData={taskData}
         setTaskData={setTaskData}
         handleDelete={handleDelete}
+        handleComplete={handleComplete}
       />
       <Modal
         modalShow={modalShow}

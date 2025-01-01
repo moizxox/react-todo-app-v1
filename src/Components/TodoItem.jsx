@@ -1,12 +1,22 @@
 import EditButton from "./TaskButtons/EditButton";
 import DeleteButton from "./TaskButtons/DeleteButton";
 import CompleteButton from "./TaskButtons/CompleteButton";
-function TodoItem({ taskTitle, id, editData, handleDelete }) {
+function TodoItem({
+  taskTitle,
+  id,
+  editData,
+  handleDelete,
+  handleComplete,
+  taskStatus
+}) {
   const handleEdit = () => {
     editData({ toEditTitle: taskTitle, toEditId: id });
   };
   const handleDeleteClick = () => {
     handleDelete(id);
+  };
+  const handleCompleteClick = () => {
+    handleComplete(id);
   };
   return (
     <>
@@ -14,7 +24,9 @@ function TodoItem({ taskTitle, id, editData, handleDelete }) {
         <div className="task-title">
           <input
             type="text"
-            className="text-text text-xl w-full font-semibold bg-transparent outline-none"
+            className={`text-text ${
+              taskStatus && "line-through opacity-50"
+            } text-xl w-full font-semibold bg-transparent outline-none`}
             value={taskTitle}
             disabled
           />
@@ -22,7 +34,7 @@ function TodoItem({ taskTitle, id, editData, handleDelete }) {
         <div className="task-btns flex gap-x-2">
           <EditButton handleEdit={handleEdit} />
           <DeleteButton handleDelete={handleDeleteClick} />
-          <CompleteButton />
+          <CompleteButton handleCompleteClick={handleCompleteClick} />
         </div>
       </div>
     </>

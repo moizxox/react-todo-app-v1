@@ -1,8 +1,13 @@
 import AddTask from "./AddTask";
 import TodoList from "./TodoList";
-import { useEffect, useState } from "react";
 
-function Box({ editData, taskData, setTaskData, handleDelete }) {
+function Box({
+  editData,
+  taskData,
+  setTaskData,
+  handleDelete,
+  handleComplete
+}) {
   const getTaskInput = (inputData) => {
     setTaskData([...taskData, inputData]);
   };
@@ -16,6 +21,7 @@ function Box({ editData, taskData, setTaskData, handleDelete }) {
             taskData={taskData}
             editData={editData}
             handleDelete={handleDelete}
+            handleComplete={handleComplete}
           />
         </div>
       </section>
