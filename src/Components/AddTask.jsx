@@ -1,4 +1,5 @@
 import { IoIosAddCircle } from "react-icons/io";
+import { toast } from "react-toastify";
 import { useState } from "react";
 
 function AddTask({ handleTaskInput }) {
@@ -14,8 +15,9 @@ function AddTask({ handleTaskInput }) {
       };
       handleTaskInput(inputData);
       setTaskInput("");
+      toast.success("Task Added Successfully!");
     } else {
-      alert("Blank Task Not Work");
+      toast.error("Blank Task not allowed!");
     }
   };
   return (

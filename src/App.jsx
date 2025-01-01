@@ -2,6 +2,7 @@ import Box from "./Components/Box";
 import Header from "./Components/Header";
 import Modal from "./Components/Modals/Modal";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 function App() {
   const [modalShow, setModalShow] = useState(false);
 
@@ -24,18 +25,24 @@ function App() {
       }
     });
     setTaskData([...taskData]);
+    toast.info("Task Updated Successfully!");
   };
 
   const handleDelete = (deleteID) => {
     setTaskData(taskData.filter((dataItem) => dataItem.taskID !== deleteID));
+    toast.info("Task Deleted!");
   };
   const handleComplete = (completeID) => {
     taskData.forEach((dataItem) => {
       if (dataItem.taskID === completeID) {
-        dataItem.taskStatus === true
-          ? (dataItem.taskStatus = false)
-          : (dataItem.taskStatus = true);
+        dataItem.taskStatus = !dataItem.taskStatus;
+        toast.info(
+          dataItem.taskStatus
+            ? "Task set to Completed!"
+            : "Task set to Uncompleted!"
+        );
       }
+
       setTaskData([...taskData]);
     });
   };
