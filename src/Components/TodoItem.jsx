@@ -34,7 +34,10 @@ function TodoItem({
         <div className="task-btns flex gap-x-2">
           <EditButton handleEdit={handleEdit} />
           <DeleteButton handleDelete={handleDeleteClick} />
-          <CompleteButton handleCompleteClick={handleCompleteClick} />
+          <CompleteButton
+            handleCompleteClick={handleCompleteClick}
+            taskStatus={taskStatus}
+          />
         </div>
       </div>
     </>
