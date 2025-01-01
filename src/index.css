@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+form::placeholder {
+  color: var(--text);
+  opacity: 0.8;
+}
