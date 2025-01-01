@@ -1,6 +1,7 @@
 import { FaSave } from "react-icons/fa";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 function Modal({ modalShow, modalClose, editData, hadleEditSave }) {
   const [value, setValue] = useState("");
@@ -10,9 +11,10 @@ function Modal({ modalShow, modalClose, editData, hadleEditSave }) {
     e.preventDefault();
     if (value.trim()) {
       hadleEditSave({ editedTitle: value, editedTaskId: editData.toEditId });
-      handleClose();
+      modalClose(false);
+      toast.info("Task Updated Successfully!");
     } else {
-      alert("Blank Task Not Work");
+      toast.error("Blank Task Not Work");
     }
   };
   useEffect(() => {
@@ -25,7 +27,7 @@ function Modal({ modalShow, modalClose, editData, hadleEditSave }) {
       }`}
       onSubmit={handleSave}
     >
-      <div className="bg-secondary px-5 py-9 rounded-lg flex flex-col items-start gap-y-3 max-w-[500px] w-full relative ">
+      <div className="bg-secondary px-5 py-9 rounded-lg flex flex-col items-start gap-y-3 max-w-[500px] w-[90%] relative">
         <h3 className="text-text text-2xl uppercase font-bold">
           Edit Your Task
         </h3>
@@ -45,6 +47,7 @@ function Modal({ modalShow, modalClose, editData, hadleEditSave }) {
         <button
           className=" text-red-400 absolute top-3 right-2"
           onClick={handleClose}
+          type="button"
         >
           <IoIosCloseCircle size={30} />
         </button>

@@ -17,6 +17,17 @@ function App() {
     setModalShow(true);
   };
 
+  const handleDeleteAll = () => {
+    if (taskData.length > 0) {
+      if (confirm("Are you sure you want to complete this task?")) {
+        setTaskData([]);
+        toast.info("All Task Deleted!");
+      }
+    } else {
+      toast.error("Not Task Found to Delete");
+    }
+  };
+
   const hadleEditSave = ({ editedTitle, editedTaskId }) => {
     console.log(editedTitle, editedTaskId);
     taskData.forEach((dataItem) => {
@@ -26,7 +37,6 @@ function App() {
       }
     });
     setTaskData([...taskData]);
-    toast.info("Task Updated Successfully!");
   };
 
   const handleDelete = (deleteID) => {
@@ -60,6 +70,7 @@ function App() {
         setTaskData={setTaskData}
         handleDelete={handleDelete}
         handleComplete={handleComplete}
+        handleDeleteAll={handleDeleteAll}
       />
       <Modal
         modalShow={modalShow}

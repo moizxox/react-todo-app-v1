@@ -34,7 +34,13 @@ function AddTask({ handleTaskInput }) {
             onChange={(e) => setTaskInput(e.target.value)}
             value={taskInput}
           />
-          <button type="submit" className="text-yellow-300">
+          <button
+            type="submit"
+            className={`${
+              taskInput.trim() ? "text-yellow-300" : "text-gray-400"
+            }`}
+            disabled={!taskInput.trim()}
+          >
             <IoIosAddCircle size={30} />
           </button>
         </form>

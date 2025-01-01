@@ -1,7 +1,7 @@
 function Header() {
   return (
     <>
-      <header className="bg-secondary p-4 sticky top-0">
+      <header className="bg-secondary p-4 sticky top-0 z-10 ">
         <h1 className="text-2xl text-text uppercase font-bold text-center">
           Todo App
         </h1>
