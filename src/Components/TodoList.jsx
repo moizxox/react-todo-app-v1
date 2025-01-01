@@ -1,6 +1,6 @@
 import TodoItem from "./TodoItem";
 
-function TodoList({ taskData, editData }) {
+function TodoList({ taskData, editData, handleDelete }) {
   return (
     <>
       <section className="task-list flex flex-col gap-y-4">
@@ -9,6 +9,7 @@ function TodoList({ taskData, editData }) {
             key={i}
             taskTitle={taskDataItem.taskTitle}
             editData={editData}
+            handleDelete={handleDelete}
             id={taskDataItem.taskID}
           />
         ))}

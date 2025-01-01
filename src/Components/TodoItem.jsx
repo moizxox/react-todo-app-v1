@@ -1,9 +1,12 @@
 import EditButton from "./TaskButtons/EditButton";
 import DeleteButton from "./TaskButtons/DeleteButton";
 import CompleteButton from "./TaskButtons/CompleteButton";
-function TodoItem({ taskTitle, id, editData }) {
+function TodoItem({ taskTitle, id, editData, handleDelete }) {
   const handleEdit = () => {
     editData({ toEditTitle: taskTitle, toEditId: id });
+  };
+  const handleDeleteClick = () => {
+    handleDelete(id);
   };
   return (
     <>
@@ -18,7 +21,7 @@ function TodoItem({ taskTitle, id, editData }) {
         </div>
         <div className="task-btns flex gap-x-2">
           <EditButton handleEdit={handleEdit} />
-          <DeleteButton />
+          <DeleteButton handleDelete={handleDeleteClick} />
           <CompleteButton />
         </div>
       </div>
