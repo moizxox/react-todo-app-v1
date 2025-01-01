@@ -22,6 +22,7 @@ function App() {
     taskData.forEach((dataItem) => {
       if (dataItem.taskID === editedTaskId) {
         dataItem.taskTitle = editedTitle;
+        dataItem.taskStatus = false;
       }
     });
     setTaskData([...taskData]);
