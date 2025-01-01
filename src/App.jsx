@@ -19,7 +19,7 @@ function App() {
 
   const handleDeleteAll = () => {
     if (taskData.length > 0) {
-      if (confirm("Are you sure you want to complete this task?")) {
+      if (confirm("Are you sure you want to delete All Tasks?")) {
         setTaskData([]);
         toast.info("All Task Deleted!");
       }
