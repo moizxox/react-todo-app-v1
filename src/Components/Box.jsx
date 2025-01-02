@@ -24,7 +24,7 @@ function Box({
       <section className="w-full mt-[60px] px-4 ">
         <div className="max-w-[600px] bg-secondary p-9 rounded-lg flex flex-col gap-y-5 mx-auto max-[600px]:px-4">
           <AddTask handleTaskInput={getTaskInput} />
-          <div className="flex justify-between items-center max-[600px]:flex-col">
+          <div className="flex justify-between items-center gap-y-2 max-[600px]:flex-col">
             <FilterButtons
               showAllTasks={showAllTasks}
               showUndoTasks={showUndoTasks}
