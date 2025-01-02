@@ -28,7 +28,7 @@ function Box({
               handleActiveNum={handleActiveNum}
               activeBtn={activeBtn}
             />
-            {!taskData.length == 0 && (
+            {!displayTasks.length == 0 && (
               <DeleteAllButton handleDeleteAll={handleDeleteAll} />
             )}
           </div>

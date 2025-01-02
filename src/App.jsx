@@ -10,6 +10,7 @@ function App() {
     const storedTasks = localStorage.getItem("taskData");
     return storedTasks ? JSON.parse(storedTasks) : [];
   });
+  const [taskType, setTaskType] = useState("");
   const [displayTasks, setDisplayTasks] = useState(taskData);
   const [editData, setEditData] = useState({});
   const [activeBtn, setActiveBtn] = useState(1);
@@ -21,10 +22,16 @@ function App() {
 
   const handleDeleteAll = () => {
     if (taskData.length > 0) {
-      if (confirm("Are you sure you want to delete All Tasks?")) {
-        setTaskData([]);
-        setDisplayTasks([]);
-        toast.info("All Task Deleted!");
+      if (confirm(`Are you sure you want to delete ${taskType} Tasks?`)) {
+        toast.info(`${taskType} Tasks Deleted!`);
+        if (activeBtn == "2") {
+          let undoTasks = taskData.filter((task) => task.taskStatus);
+          setTaskData(undoTasks);
+        } else if (activeBtn == "3") {
+          let completedTasks = taskData.filter((task) => !task.taskStatus);
+          setTaskData(completedTasks);
+        } else setTaskData([]);
+        handleFilter();
       }
     } else {
       toast.error("No Task Found to Delete");
@@ -63,17 +70,21 @@ function App() {
     setTaskData([...taskData]);
   };
 
-  // Filtering Logic
   const handleActiveNum = (activeNum) => {
     setActiveBtn(activeNum);
   };
 
   const handleFilter = () => {
-    if (activeBtn == "2")
+    if (activeBtn == "2") {
       setDisplayTasks(taskData.filter((task) => !task.taskStatus));
-    else if (activeBtn == "3")
+      setTaskType("All Undo");
+    } else if (activeBtn == "3") {
       setDisplayTasks(taskData.filter((task) => task.taskStatus));
-    else setDisplayTasks(taskData);
+      setTaskType("All Completed");
+    } else {
+      setDisplayTasks(taskData);
+      setTaskType("All");
+    }
   };
   useEffect(() => {
     handleFilter();
