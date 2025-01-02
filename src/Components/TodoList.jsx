@@ -1,6 +1,8 @@
 import TodoItem from "./TodoItem";
 
 function TodoList({ taskData, editData, handleDelete, handleComplete }) {
+  // console.log(taskData);
+
   return (
     <>
       <section className="task-list flex flex-col gap-y-4 ">

@@ -7,12 +7,11 @@ function Box({
   editData,
   taskData,
   setTaskData,
+  displayTasks,
   handleDelete,
   handleComplete,
   handleDeleteAll,
-  showAllTasks,
-  showUndoTasks,
-  showCompletedTasks,
+  handleActiveNum,
   activeBtn
 }) {
   const getTaskInput = (inputData) => {
@@ -26,9 +25,7 @@ function Box({
           <AddTask handleTaskInput={getTaskInput} />
           <div className="flex justify-between items-center gap-y-2 max-[600px]:flex-col">
             <FilterButtons
-              showAllTasks={showAllTasks}
-              showUndoTasks={showUndoTasks}
-              showCompletedTasks={showCompletedTasks}
+              handleActiveNum={handleActiveNum}
               activeBtn={activeBtn}
             />
             {!taskData.length == 0 && (
@@ -37,7 +34,7 @@ function Box({
           </div>
 
           <TodoList
-            taskData={taskData}
+            taskData={displayTasks}
             editData={editData}
             handleDelete={handleDelete}
             handleComplete={handleComplete}

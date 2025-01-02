@@ -12,7 +12,7 @@ function App() {
   });
   const [displayTasks, setDisplayTasks] = useState(taskData);
   const [editData, setEditData] = useState({});
-  const [activeBtn, setActiveBtn] = useState("1");
+  const [activeBtn, setActiveBtn] = useState(1);
 
   const handleEditData = (data) => {
     setEditData(data);
@@ -39,7 +39,6 @@ function App() {
       }
     });
     setTaskData([...taskData]);
-    setDisplayTasks([...taskData]);
   };
 
   const handleDelete = (deleteID) => {
@@ -47,7 +46,6 @@ function App() {
       (dataItem) => dataItem.taskID !== deleteID
     );
     setTaskData(updatedTasks);
-    setDisplayTasks(updatedTasks);
     toast.info("Task Deleted!");
   };
 
@@ -63,31 +61,27 @@ function App() {
       }
     });
     setTaskData([...taskData]);
-    setDisplayTasks([...taskData]);
   };
 
   // Filtering Logic
-  const showAllTasks = () => {
-    setActiveBtn("1");
+  const handleActiveNum = (activeNum) => {
+    setActiveBtn(activeNum);
   };
 
-  const showUndoTasks = () => {
-    setActiveBtn("2");
-  };
-
-  const showCompletedTasks = () => {
-    setActiveBtn("3");
-  };
-  useEffect(() => {
+  const handleFilter = () => {
     if (activeBtn == "2")
       setDisplayTasks(taskData.filter((task) => !task.taskStatus));
     else if (activeBtn == "3")
       setDisplayTasks(taskData.filter((task) => task.taskStatus));
     else setDisplayTasks(taskData);
+  };
+  useEffect(() => {
+    handleFilter();
   }, [activeBtn]);
+
   useEffect(() => {
     localStorage.setItem("taskData", JSON.stringify(taskData));
-    setDisplayTasks(taskData);
+    handleFilter();
   }, [taskData]);
 
   return (
@@ -95,14 +89,13 @@ function App() {
       <Header />
       <Box
         editData={handleEditData}
-        taskData={displayTasks}
+        taskData={taskData}
         setTaskData={setTaskData}
+        displayTasks={displayTasks}
         handleDelete={handleDelete}
         handleComplete={handleComplete}
         handleDeleteAll={handleDeleteAll}
-        showAllTasks={showAllTasks}
-        showUndoTasks={showUndoTasks}
-        showCompletedTasks={showCompletedTasks}
+        handleActiveNum={handleActiveNum}
         activeBtn={activeBtn}
       />
       <Modal

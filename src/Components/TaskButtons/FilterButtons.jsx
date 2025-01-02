@@ -1,32 +1,27 @@
-function FilterButtons({
-  showAllTasks,
-  showUndoTasks,
-  showCompletedTasks,
-  activeBtn
-}) {
+function FilterButtons({ handleActiveNum, activeBtn }) {
   return (
     <div className="flex items-center gap-x-1">
       <button
         className={`flex py-2 px-3 justify-between bg-green-400 rounded-full text-white items-center font-medium ${
-          activeBtn !== "1" && "opacity-[0.8]"
+          activeBtn !== 1 && "opacity-[0.8]"
         }`}
-        onClick={showAllTasks}
+        onClick={() => handleActiveNum(1)}
       >
         All
       </button>
       <button
         className={`flex py-2 px-3 justify-between bg-green-400 rounded-full text-white items-center font-medium ${
-          activeBtn !== "2" && "opacity-[0.8]"
+          activeBtn !== 2 && "opacity-[0.8]"
         }`}
-        onClick={showUndoTasks}
+        onClick={() => handleActiveNum(2)}
       >
         Undo
       </button>
       <button
         className={`flex py-2 px-3 justify-between bg-green-400 rounded-full text-white items-center font-medium ${
-          activeBtn !== "3" && "opacity-[0.8]"
+          activeBtn !== 3 && "opacity-[0.8]"
         }`}
-        onClick={showCompletedTasks}
+        onClick={() => handleActiveNum(3)}
       >
         Completed
       </button>
