@@ -19,7 +19,10 @@ function Box({
       <section className="w-full mt-[60px] px-4 ">
         <div className="max-w-[600px] bg-secondary p-9 rounded-lg flex flex-col gap-y-5 mx-auto max-[600px]:px-4">
           <AddTask handleTaskInput={getTaskInput} />
-          <DeleteAllButton handleDeleteAll={handleDeleteAll} />
+          {!taskData.length == 0 && (
+            <DeleteAllButton handleDeleteAll={handleDeleteAll} />
+          )}
+
           <TodoList
             taskData={taskData}
             editData={editData}
