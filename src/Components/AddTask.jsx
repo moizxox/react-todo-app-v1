@@ -22,7 +22,11 @@ function AddTask({ handleTaskInput }) {
   };
   return (
     <>
-      <section className="add-task w-full p-2 border-2 border-[#ffffff9c] rounded-lg">
+      <div
+        className={`add-task w-full p-2 border-2 border-[#ffffff9c] ${
+          taskInput.trim() && "border-yellow-300"
+        } rounded-lg`}
+      >
         <form
           className="flex items-center w-full gap-x-2"
           onSubmit={handleSubmit}
@@ -44,7 +48,7 @@ function AddTask({ handleTaskInput }) {
             <IoIosAddCircle size={30} />
           </button>
         </form>
-      </section>
+      </div>
     </>
   );
 }
